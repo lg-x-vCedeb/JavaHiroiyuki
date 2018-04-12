@@ -2,6 +2,7 @@
 public class Start {
 	public static void main(String[] args){
 		Animal.testAnimal();
+		Cage.testCage();
 	}
 }
 
@@ -9,7 +10,6 @@ public class Start {
 //			GoldenDartFrog
 //**********			  **********
 class GoldenDartFrog extends Animal{
-	private String color;
 	
 	public GoldenDartFrog(String color){
 		super(color);
@@ -29,8 +29,6 @@ class GoldenDartFrog extends Animal{
 //			CoqAuVin
 //**********		****************
 class CoqAuVin extends Chicken{
-	private String color;
-	private int numOfFeathers;
 	
 	public CoqAuVin() {
 		super("brown", 0);
@@ -46,8 +44,6 @@ class CoqAuVin extends Chicken{
 //			Chicken
 //**********	   *****************
 class Chicken extends Bird{
-	private String color;
-	private int numOfFeathers;
 	
 	public Chicken(String color, int numOfFeathers) {
 		super(color,numOfFeathers);
@@ -55,10 +51,6 @@ class Chicken extends Bird{
 	
 	public Chicken(String color){
 		super(color,8000);
-	}
-	
-	public String getColor(){
-		return color;
 	}
 	
 	public boolean isEdible() {
@@ -71,9 +63,6 @@ class Chicken extends Bird{
 //			HoodedPitohui			
 //**********			 ***********
 class HoodedPitohui extends Bird{
-
-	private String color;
-	private int numOfFeathers;
 
 	public HoodedPitohui() {
 		super("orange-blank", 4000);
@@ -90,7 +79,6 @@ class HoodedPitohui extends Bird{
 //			Bird				
 //**********	********************
 class Bird extends Animal{
-	private String color;
 	private int numOfFeathers;
 	
 	public Bird(String color, int numOfFeathers) {
@@ -141,7 +129,39 @@ class Animal{
 		System.out.println(c1.isEdible());
 		
 		Animal c2 = new Chicken("Yellow");
-		System.out.println("The " + c2.getClass().getName() + "'s color is " + c2.getColor() + ", which is " + c2.getColor().equals("Green"));
+		System.out.println("The " + c2.getClass().getName() + "'s color is " + c2.getColor() + ", which is " + c2.getColor().equals("Yellow"));
 		System.out.println(c2.isEdible());
+		
+		Animal g1 = new GoldenDartFrog("Gold");
+		System.out.println("The " + g1.getClass().getName() + "'s color is " + g1.getColor() + ", which is " + g1.getColor().equals("Gold"));
+		System.out.println(g1.isEdible());
+		
+		Animal coq1 = new CoqAuVin();
+		System.out.println("The " + coq1.getClass().getName() + "'s color is " + coq1.getColor() + ", which is " + coq1.getColor().equals("brown"));
+		System.out.println(coq1.isEdible());
+		
+		Animal h1 = new HoodedPitohui();
+		System.out.println("The " + h1.getClass().getName() + "'s color is " + h1.getColor() + ", which is " + h1.getColor().equals("orange-blank"));
+		System.out.println(h1.isEdible());
+	}
+}
+
+class Cage{
+	private Bird bird;
+	
+	public Cage(Bird bird) {
+		this.bird = bird;
+	}
+	
+	public Bird getBird() {
+		return bird;
+	}
+	
+	public static void testCage() {
+		Bird h1 = new HoodedPitohui();
+		Cage cage1 = new Cage(h1);
+		Bird h2 = new HoodedPitohui();
+		h2 = cage1.getBird();
+		System.out.println("It's the same bird? " + h1.equals(h2));
 	}
 }
