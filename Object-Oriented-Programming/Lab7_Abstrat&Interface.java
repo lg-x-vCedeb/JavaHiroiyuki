@@ -6,7 +6,17 @@ public class Start {
 		Maqpie.testMaqpie();
 		Ostrich.testOstrich();
 		Pegasus.testPegasus();
+		Airplane.testAirplane();
 		Animal.testAnimal();
+		
+		Flyer sparrow = new Bird("sparrow",15);
+		System.out.println(sparrow.getName() + " is " + sparrow.canFly() + " to fly and it's " + sparrow.isDangerous());
+		
+		Flyer KLM4805 = new Airplane("KLM4805");
+		System.out.println(KLM4805.getName() + " is " + KLM4805.canFly() + " to fly and it's " + KLM4805.isDangerous());
+		
+		Flyer o3 = new Ostrich("o3");
+		System.out.println(o3.getName() + " is " + o3.canFly() + " to fly and it's " + o3.isDangerous());
 	}
 }
 
@@ -59,7 +69,7 @@ class Dog extends Animal{
 	}
 }
 
-class Bird extends Animal{
+class Bird extends Animal implements Flyer{
 	private String name;
 	private int Legs;
 	private int numOfEggs;
@@ -85,6 +95,9 @@ class Bird extends Animal{
 		return true;
 	}
 	
+	public boolean isDangerous() {
+		return false;
+	}
 	public static void testBird() {
 		Bird b1 = new Bird("you like",2);
 		System.out.println("The number of " + b1.getName() + "'s legs are " + b1.getLegs());
@@ -123,6 +136,9 @@ class Maqpie extends Bird{
 		return true;
 	}
 	
+	public boolean isDangerous() {
+		return false;
+	}
 	public static void testMaqpie() {
 		Maqpie m2 = new Maqpie("you love");
 		System.out.println("The number of " + m2.getName() + "'s legs are " + m2.getLegs());
@@ -146,6 +162,9 @@ class Ostrich extends Bird{
 		return false;
 	}
 	
+	public boolean isDangerous() {
+		return true;
+	}
 	public static void testOstrich() {
 		Ostrich o2 = new Ostrich("your pashion");
 		System.out.println("The number of " + o2.getName() + "'s legs are " + o2.getLegs());
@@ -180,10 +199,45 @@ class Pegasus extends Bird{
 		return true;
 	}
 	
+	public boolean isDangerous() {
+		return false;
+	}
 	public static void testPegasus() {
 		Pegasus p2 = new Pegasus("your pashion");
 		System.out.println("The number of " + p2.getName() + "'s legs are " + p2.getLegs());
 		System.out.println("The number of " + p2.getName() + "'s eggs are " + p2.getNumOfEggs());
 		System.out.println("And " + p2.getName() + " is " + p2.canFly() + " to fly");
 	}
+}
+
+class Airplane implements Flyer{
+	private String name;
+	
+	public Airplane(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public boolean canFly() {
+		return true;
+	}
+	
+	public boolean isDangerous() {
+		return false;
+	}
+	public static void testAirplane() {
+		Airplane Pan_American = new Airplane("Pan_American");
+		System.out.println(Pan_American.getName() + " is " + Pan_American.canFly() + " to fly and it's " + Pan_American.isDangerous());
+	}
+}
+
+interface Flyer{
+	public String getName();
+	
+	public boolean canFly();
+	
+	public boolean isDangerous();
 }
